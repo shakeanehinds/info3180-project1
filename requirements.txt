@@ -7,3 +7,8 @@ MarkupSafe==1.1.0
 Werkzeug==0.14.1
 Flask-Mail
 Flask-WTF
+Flask-Login
+Flask-Migrate
+Flask-Script
+Flask-SQLAlchemy
+psycopg2

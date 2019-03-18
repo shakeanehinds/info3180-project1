@@ -5,11 +5,16 @@ Werkzeug Documentation:  http://werkzeug.pocoo.org/documentation/
 This file creates your application.
 """
 
-from app import app, mail
-from flask_mail import Message
+from app import app, db
 from flask import render_template, request, redirect, url_for, flash
-from .forms import ContactForm
+from flask_login import login_user, logout_user, current_user, login_required
+from app.forms import Profile
+from app.models import UserProfile
+import datetime
+import os
+from werkzeug.utils import secure_filename
 
+path = app.config['UPLOAD_FOLDER']
 
 ###
 # Routing for your application.
@@ -26,25 +31,42 @@ def about():
     """Render the website's about page."""
     return render_template('about.html', name="Mary Jane")
 
-@app.route('/contact', methods=['GET','POST'])
-def contact():
-    contact = ContactForm()
+@app.route('/profiles')
+def profiles():
+    profiles = db.session.query(UserProfile).all()
+    return render_template('profiles.html', profiles = profiles)
+
+@app.route('/profile/<int:userid>')
+def show_profile(userid):
+    user = db.session.query(UserProfile).get(userid)
+    return render_template('show_profile.html', user=user)
+
+@app.route('/profile', methods=['GET','POST'])
+def profile():
+    profile = Profile()
 
     if request.method == 'POST':
-        if contact.validate_on_submit():
-            name = contact.name.data
-            email = contact.email.data
-            subject = contact.subject.data
-            message = contact.message.data
-
-            msg = Message(subject=subject, sender=(name, email),recipients=["af0b90bd20-fb54b1@inbox.mailtrap.io"])
-            msg.body = message
-            mail.send(msg)
-            
-            flash('You have successfully filled out the form', 'success')
-            return redirect(url_for('home'))
-        flash("error's have been made")
-    return render_template('contact.html', form=contact)
+        file = profile.image.data
+        filename = secure_filename(file.filename)
+        file.save(os.path.join(path, filename))
+        
+        user = UserProfile(
+            request.form['firstname'],
+            request.form['lastname'],
+            request.form['email'],
+            request.form['location'],
+            request.form['gender'],
+            request.form['biography'],
+            filename,
+            datetime.datetime.now().strftime("%B %d, %Y")
+        )
+        
+        db.session.add(user)
+        db.session.commit()
+        
+        flash('Profile Saved', 'success')
+        return redirect(url_for("profiles")) 
+    return render_template("profile.html", form=profile)
 
 
 ###

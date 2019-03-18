@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block main %} 
+    <div class="profile">
+        <img class="dp"src="{{ url_for('static', filename='images/'+user.image) }}"></img>
+        
+        <div class="details">
+            <h2>{{ user.fname }} {{ user.lname }}</h2>
+            <div class="icons">
+                <i class="far fa-envelope"></i>
+                {{ user.email }}
+            </div>
+            <div class="icons">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ user.location }}
+            </div>
+            <div class="icons">
+                <i class="far fa-calendar-alt"></i>
+                Joined on {{ user.logtime }}
+            </div>
+        </div>
+        
+        <div class="bio">
+            <h3>About Me</h3>
+            <p>{{ user.biography }}</p>
+        </div>
+        <div class="social">
+            <a href="#" ><button class="button">Send Message</button></a>
+            <a href="#" ><button class="button">Follow</button></a>
+        </div>
+    </div>
+{% endblock %}
