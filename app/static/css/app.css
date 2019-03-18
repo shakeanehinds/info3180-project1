@@ -1,3 +1,10 @@
+:root {
+    --primary:#3a9cf4;
+    --accent: #74c44c;
+    --b-radius: 7px;
+}
+
+
 body {
     padding-top: 5rem;
     background: #CCD6DD;
@@ -6,7 +13,6 @@ body {
 button{
     color: rgb(0, 0, 0);
     background-color: rgb(25, 136, 228);
-    border-radius: 15px;
     padding: 10px;
     margin: 0%;
     width: 200px;
@@ -34,7 +40,7 @@ small {
     color: red;
 }
 
-.profile-card {
+.profile {
     border-top: 3px solid var(--primary);
     box-sizing: border-box;
     width: 80%;
@@ -47,105 +53,63 @@ small {
     box-shadow: 1px 2px 5px 2px rgba(186,186,186,1);;
 }
 
-.profile-card img {
+.profile img {
     width: 80px;
     height: 80px;
     margin-right: 50px;
 }
 
-.card {
+.profile-body {
+    display: flex;
+}
+
+.profiles-button{
+    margin-top: 15px;
+}
+
+.profile-page {
     width: 80%;
+    background: #fff;
     margin: 0 auto;
     padding:40px 50px 15px 50px;
     border-top: 3px solid var(--primary);
     border-radius: var(--b-radius);
     display: grid;
-    grid-template-areas: "pic info"
-                         "about about"
-                         "buttons buttons";
+    grid-template-areas: "dp details"
+                         "bio bio"
+                         "message follow";
     grid-template-columns: repeat(2,1fr);           
 }
 
-.profile-pic {
-    grid-area: pic;
+.dp {
+    grid-area: dp;
     height: 200px;
     width: 200px;
     border-radius: var(--b-radius);
 }
 
 .bio {
-    grid-area: info;
+    grid-area: bio;
+    padding-top: 30px;
+    padding-bottom: 10px;
 }
 
-.card-body {
-    grid-area: about;
+.details {
+    grid-area: details;
     padding-left: none;
 }
 
-.card-btns {
-    grid-area: buttons;
-    display: flex;
-    justify-content: space-around;
+.message {
+    grid-area: message;
+    
+}
+.follow {
+    grid-area: follow;
 }
 
-
-.profile-card i {
-    margin-right: 5px;
-}
 
 .icons {
     line-height: 16px;
     margin-bottom: 4px;
-}
-
-.profile-info {
-    display: flex;
-}
-
-.bio > div {
-    margin-bottom: 20px;
-    font-size: 18px;
-    color: gray;
-}
-
-
-
-.view-profile {
-    /*display: inline-block;*/
-    height: 46px;
-    box-sizing: border-box;
-    width: auto;
-    border-radius:var(--b-radius);
-    text-align: center;
-    background:var(--accent);
-    color: #fff;
-    padding: 10px 20px;
-    margin-right: 50px;
-}
-
-.primary {
-   background: var(--primary); 
-}
-
-.accent {
-    background: var(--accent);
-}
-
-.button {
-    border-radius: var(--b-radius);
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-
-}
-
-.hover {
-    transition: 0.2s all ease-in;
-}
-
-.hover:hover {
-    transform: scale(1.1);
-    text-decoration: none;
-    color: #fff;
+    padding: 9px;
 }

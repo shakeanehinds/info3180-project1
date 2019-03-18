@@ -45,8 +45,8 @@ def show_profile(userid):
 def profile():
     profile = Profile()
 
-    if request.method == 'POST':
-        file = profile.image.data
+    if request.method == 'POST' and profile.validate_on_submit():
+        file = profile.dp.data
         filename = secure_filename(file.filename)
         file.save(os.path.join(path, filename))
         
