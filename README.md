@@ -1,11 +1,8 @@
-# INFO3180 - Lab 3
-This is the starter code for Lab 3
-
-Remember to always create a virtual environment and install the packages in your requirements file
+# INFO3180 - Project 1
+Dynamic Web Development
+Flask based application that can accept and display profile information.
+The profile information is stored in a PostgreSQL database.
 
 ```
-$ python -m venv venv (you may need to use python3 or python3.5 [on Cloud9] instead)
-$ source venv/bin/activate (or .\venv\Scripts\activate on Windows)
-$ pip install -r requirements.txt 
-$ python run.py
+more functionality to be added
 ```
