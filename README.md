@@ -1,5 +1,6 @@
-# INFO3180 - Project 1
-Dynamic Web Development
+# INFO3180 Dynamic Web Development - Project 1
+
+
 Flask based application that can accept and display profile information.
 The profile information is stored in a PostgreSQL database.
 
